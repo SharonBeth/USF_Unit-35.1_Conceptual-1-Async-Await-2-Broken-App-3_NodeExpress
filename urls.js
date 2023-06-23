@@ -115,9 +115,10 @@ for (let i = 0; i < lineArr.length; i++) {
         axios.get(lineArr[i])
             // .then(response => console.log("at [i] of axios response"))
             .then(response => response.data)
-        // .catch(error => {
-        // console.log(`Error: Error fetching data from ${lineArr[i]}:${error.message} `)
-        // })
+            .catch(error => {
+                console.log(`Error: From for-let Loop ${lineArr[i]}:${error.message} `)
+            }
+            )
     )
 }
 
@@ -125,8 +126,11 @@ Promise.all(webCatPromiseArr)
     .then(eachData => {
         let i = 0;
         eachData.forEach(p => {
-            // console.log(p + " This is the eachData This is the each data")
-            writeToFile(p, fileNameArr[i])
+            if (p !== undefined) {
+                // console.log(p + " This is the eachData This is the each data")
+                writeToFile(p, fileNameArr[i])
+
+            }
             i = i + 1;
         })
     })
